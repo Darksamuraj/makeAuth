@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
 	//ПРОВЕРКА ПРАВИЛЬНОСТИ ЛОГИНА И ПАРОЛЯ
 	$login=$_POST['login'];
 	$password=$_POST['password'];
@@ -16,40 +17,16 @@
 			$i+=3;
 		}
 	}
-	
+	$error="";
 	//ЕСЛИ УЖЕ АВТОРИЗОВАН, ТО ПОСЫЛАТЬ НА СТРАНИЧКУ С КЛИКЕРОМ
 	if($_COOKIE['login']!=""){
 		header('Location: result.php'); exit;
 	} else {
 		if(isset($_POST['go'])){
-			echo 'не правильный логин или пароль <br>';
+			$error = 'не правильный логин или пароль';
 		}
 	}
 	
+	$templ = $twig->loadTemplate('Sign_in.html');
+	echo $templ->render(array('error'=>$error));
 ?>
-<!Doctype html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<style>
-	<!-- НАЧАЛ 21.09.2018 21:17-->
-	<!-- ПРОСТО ПОСЕРЕДИНЕ ФОРМЫ РАСПОЛОЖИМ -->
-		.center{
-			text-align:center;
-		}
-	</style>
-</head>
-<body>
-	<!-- СТАНДАРТНАЯ ФОРМА С ОТСЫЛКОЙ В ФАЙЛ ВХОДА-->
-	<form action="" method="post" class="center"> 
-			<input type="" name="login" placeholder="Логин тут"><br>
-			<input type="password" name="password" placeholder="Пароль тут"><br>
-			<button name="go">Войти</button>
-	</form>
-	<!-- ОТДЕЛЬНАЯ ФОРМА ДЛЯ РЕГИСТРАЦИИ -->
-	<form action="signUp.php" method="post" class="center">
-			<button>Зарегистрироваться</button>
-	</form>
-
-</body>
-</html>

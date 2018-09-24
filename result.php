@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
 	//ПРОВЕРКА ЕСТЬ ЛИ КУКИ
 	if($_COOKIE['login']==""){
 		header('Location: index.php'); exit;
@@ -30,12 +31,6 @@
 		$texFile=implode(' ',$arrTextFile);
 		file_put_contents('file.txt',$texFile);
 	}
-
+		$templ = $twig->loadTemplate('result.html');
+		echo $templ->render(array('counter'=>$counter));
 ?>
-<form action="" method="post">
-	<p><font size="35"><? echo $counter; ?></font></p>
-	<button name="count">+1</button>
-</form><br>
-<form action="" method="post">
-		<button name="Exit">Exit</button>
-</form>
