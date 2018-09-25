@@ -1,8 +1,17 @@
 <?php
+	//ÏÎÄÊËÞ×ÀÅÌ RED BEAN
+	require_once "vendor/rb/rb-mysql.php";
+	R::setup('mysql:host=127.0.0.1;dbname=makeAuth','root','');
+	if(!R::testConnection()){
+		exit('Íåò ïîäêëþ÷åíèÿ ê áàçå');
+	}
+	
 	//ÏÎÄÊËÞ×ÈÌ TWIG
 	require_once "vendor/twig/twig/lib/Twig/Autoloader.php";
 	Twig_Autoloader::register();
 	$loader = new Twig_Loader_Filesystem('views');
 	
 	$twig = new Twig_Environment($loader);
+	
+	
 ?>

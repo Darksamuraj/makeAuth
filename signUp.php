@@ -30,22 +30,22 @@ include 'config.php';
 	}
 	
 	//ПРОВЕРКА УНИКАЛЬНОСТИ ЛОГИНА
-	$texFile=file_get_contents('file.txt');
-	$arrTextFile=explode(' ',$texFile);
-	$i=0;
-	while(count($arrTextFile)>=$i+3 and $error==0){
-		if($arrTextFile[$i]==$login){
+	if($error==0){
+		$users = R::find('user',' login LIKE ?',array($login));
+		if(count($users)>0){
 			$errorText =  'Логин не должен повторяться! ';
 			$error=1;
-			}
-			$i+=3;
+		}
 	}
 	
-	//ЗАПИСЬ НОВОГО ПОЛЬЗОВАТЕЛЯ В ФАЙЛ
+	//ЗАПИСЬ НОВОГО ПОЛЬЗОВАТЕЛЯ В БД
 	if($error==0 and isset($_POST['login'])){
-		$texFile=file_get_contents('file.txt');
-		$texFile.= ' '.$login.' '.$password.' 0';
-		file_put_contents('file.txt',$texFile);
+			$user = R::dispense('user');
+			$user->login =$login;
+			$user->password = $password;
+			$user->age = $dateBRTH;
+			$user->counter='0';
+			R::store($user);
 	}
 	
 	//ОТПРАВЛЕНИЕ НА ФАЙЛ РЕЗУЛЬТАТА И КУКИ
