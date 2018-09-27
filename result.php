@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+use \RedBeanPHP\R as R;
 
 	//ПРОВЕРКА ЕСТЬ ЛИ КУКИ
 	if($_COOKIE['login']==""){

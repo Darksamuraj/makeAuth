@@ -1,5 +1,7 @@
 <?php
 include 'config.php';
+use \RedBeanPHP\R as R;
+
 	$login=$_POST['login'];
 	$password=$_POST['password'];
 	$dateBRTH=$_POST['date'];

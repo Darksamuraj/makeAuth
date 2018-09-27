@@ -1,5 +1,7 @@
 <?php
 include 'config.php';
+use \RedBeanPHP\R as R;
+
 	//ПРОВЕРКА ПРАВИЛЬНОСТИ ЛОГИНА И ПАРОЛЯ В БД
 	$login=$_POST['login'];
 	$password=$_POST['password'];

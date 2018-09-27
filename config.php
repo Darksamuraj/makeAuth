@@ -1,13 +1,13 @@
 <?php
-	//ÏÎÄÊËÞ×ÀÅÌ RED BEAN
-	require_once "vendor/rb/rb-mysql.php";
+require "vendor/autoload.php";
+use \RedBeanPHP\R as R;
+	//DB
 	R::setup('mysql:host=127.0.0.1;dbname=makeAuth','root','');
 	if(!R::testConnection()){
-		exit('Íåò ïîäêëþ÷åíèÿ ê áàçå');
+		exit('Not connection to DB');
 	}
 	
-	//ÏÎÄÊËÞ×ÈÌ TWIG
-	require_once "vendor/twig/twig/lib/Twig/Autoloader.php";
+	//VIEW
 	Twig_Autoloader::register();
 	$loader = new Twig_Loader_Filesystem('views');
 	
